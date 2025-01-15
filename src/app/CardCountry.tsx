@@ -3,6 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import styles from './globals.module.css'
 import { CardCountryProps } from '@/types'
+import Image from 'next/image'
 
 const CardCountry: React.FC<CardCountryProps> = ({
     flagUrl,
@@ -20,12 +21,7 @@ const CardCountry: React.FC<CardCountryProps> = ({
             className={styles.card}
         >
             <div className={styles.info}>
-                <img
-                    src={flagUrl}
-                    alt={nameRu}
-                    className={styles.flag}
-                    loading="lazy"
-                />
+                <Image src={flagUrl} alt={nameRu} className={styles.flag} />
                 <span>{nameRu}</span>
             </div>
             <button
