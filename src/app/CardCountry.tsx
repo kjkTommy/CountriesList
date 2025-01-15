@@ -5,12 +5,23 @@ import styles from './globals.module.css'
 import { CardCountryProps } from '@/types'
 import Image from 'next/image'
 
+const normalizeUrl = (url?: string): string => {
+    if (!url) {
+        return ''
+    }
+    if (url.startsWith('//')) {
+        return `https:${url}`
+    }
+    return url
+}
+
 const CardCountry: React.FC<CardCountryProps> = ({
     flagUrl,
     isoCode2,
     nameRu,
     onRemove,
 }) => {
+    const normalizedUrl = normalizeUrl(flagUrl)
     return (
         <motion.div
             key={isoCode2}
@@ -21,7 +32,13 @@ const CardCountry: React.FC<CardCountryProps> = ({
             className={styles.card}
         >
             <div className={styles.info}>
-                <Image src={flagUrl} alt={nameRu} className={styles.flag} />
+                <Image
+                    src={normalizedUrl}
+                    alt={nameRu}
+                    className={styles.flag}
+                    width={40}
+                    height={30}
+                />
                 <span>{nameRu}</span>
             </div>
             <button
